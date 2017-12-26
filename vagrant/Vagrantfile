@@ -1,0 +1,23 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "debian-stretch-86"
+  config.vm.provider :virtualbox do |v|
+	v.name = "lemp"
+	v.memory = 512
+	v.customize [ "modifyvm", :id, "--nictype1", "Am79C970A" ]
+  end
+  config.vm.hostname = "lemp"
+  config.vm.network "forwarded_port", guest: 80, host: 8080
+
+# Provide a root directory to provision scripts
+  config.vm.synced_folder "share", "/share", \
+	owner: "root", group: "root", \
+	mount_options: ["dmode=777", "fmode=777"]
+#start script
+  config.vm.provision "shell", path: "provision/install.sh"
+  config.vm.provision "shell", path: "provision/config.sh"
+end

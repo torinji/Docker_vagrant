@@ -1,0 +1,8 @@
+start Wordpress project on local env, use provision on Bash (LEMP stack)
+
+Установка
+1 install VirtualBox
+2 install Vagrant
+3 cd /directory/where/project
+3 vagrant up
+
