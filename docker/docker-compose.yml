@@ -1,0 +1,27 @@
+version: "2"
+services:
+
+  db:
+    image: mariadb
+    ports:
+     - "3306:3306"
+    restart: always
+    environment:
+     - MYSQL_USER="wordpress"
+     - MYSQL_ROOT_PASSWORD="wproot"
+     - MYSQL_DATABASE="wordpress"
+    volumes:
+     - "./DB/database:/var/lib/mysql"
+
+  wordpress:
+    build: 
+      context: ./WebApp
+      dockerfile: Dockerfile
+    links:
+     - db
+    restart: always
+    ports:
+     - "8080:80"
+    depends_on:
+     - db
+    tty: true

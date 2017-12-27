@@ -3,6 +3,9 @@ start Wordpress project on local env, use provision on Bash (LEMP stack)
 Установка
 1 install VirtualBox
 2 install Vagrant
-3 cd /directory/where/project
-3 vagrant up
+3 install git
+4 cd /directory/where/project
+5 git clone https://github.com/torinji/SoftServe.git
+6 cd vagrant/
+7 vagrant up
 
